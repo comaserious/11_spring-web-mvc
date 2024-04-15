@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Model(view 에서 사용할 서버측 정보)에 담긴 커맨드 객체의 정보 출력</h1>
+    <th:block th:if="${menuDTO.name}!=null">
+        <h3 th:text="|메뉴의 이름 : ${menuDTO.name}|"></h3>
+    </th:block>
+    <th:block th:if="${menuDTO.price}!=null">
+        <h3 th:text="|메뉴의 가격 : ${menuDTO.price}|"></h3>
+    </th:block>
+    <th:block th:if="${menuDTO.categoryCode}!=null">
+        <h3 th:text="|메뉴의 카테고리 코드 : ${menuDTO.categoryCode}|"></h3>
+    </th:block>
+    <th:block th:if="${menuDTO.orderableStatus}!=null">
+        <h3 th:text="|메뉴의 주문 상태 : ${menuDTO.orderableStatus}|"></h3>
+    </th:block>
+
+
+
+
+</body>
+</html>
