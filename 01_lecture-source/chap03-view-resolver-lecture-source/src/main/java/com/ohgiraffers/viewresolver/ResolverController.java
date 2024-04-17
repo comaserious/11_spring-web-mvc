@@ -1,9 +1,12 @@
 package com.ohgiraffers.viewresolver;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -45,6 +48,12 @@ public class ResolverController {
         *  키값이 존재하면 안된다*/
         rttr.addFlashAttribute("flashMessage1","리다이렉트 attr 사용해서 redirect");
 
+
+        /*필기.
+        *  여기서 확인해야 할것은 HttpSession, @SessionAttributes 와 달리 RedirectAttributes 의 addFlashAttribute 메소드는 바로
+        *  Thymeleaf 문법을 사용하여 th:text="${key}" 를 사용할수있지만
+        *  반면에 HttpSession 과 @SessionAttributes 는 redirect 한 핸들러에서 다시 session에서 getAttribute 하여
+        *  Model 이나 ModelAndView 에 값을 저장해야지 Thymeleaf 문법을 사용 할수있게 된다*/
         return "redirect:/";
     }
 
@@ -80,4 +89,17 @@ public class ResolverController {
 
         return mv;
     }
+    @PostMapping("/real")
+    public ModelAndView realMethod(ModelAndView mv, @RequestParam String name, HttpSession session){
+
+        session.setAttribute("name",name);
+        mv.setViewName("redirect:result");
+        return mv;
+
+    }
+    @GetMapping("/result")
+    public String resultReturn(){
+        return "result";
+    }
+
 }

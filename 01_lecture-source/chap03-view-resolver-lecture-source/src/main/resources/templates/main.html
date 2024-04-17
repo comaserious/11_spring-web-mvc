@@ -45,12 +45,19 @@
     <hr>
     <h3>ModelAndView 로 뷰 이름 변환하면서 flashAttribute 추가해보기</h3>
     <button onclick="location.href='modelandview-redirect-attr'">ModelAndView 로 뷰 이름 반환하여 리다이렉트 </button>
+    <script>
+        const flashMessage2 = '[[${flashMessage2}]]'
+        console.log(flashMessage2);
+        if (flashMessage2){
+            alert(flashMessage2);
+        }
+    </script>
+    <form action="real" method="post">
+        이름 : <input type="text" name="name">
+        <button type="submit">제출</button>
+    </form>
 </body>
-<script>
-    const flashMessage2 = '[[${flashMessage2}]]'
-    console.log(flashMessage2);
-    if (flashMessage2){
-        alert(flashMessage2);
-    }
-</script>
+
+
+
 </html>

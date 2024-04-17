@@ -2,6 +2,7 @@ package com.ohgiraffers.handlermethod;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,12 @@ import java.util.Map;
 @SessionAttributes(names = {"id","pwd"})
 // SessionAttributes 의 key 와 addAttributes 의 key 이름은 같아야한다
 public class FirstController {
+
+    private final HttpMessageConverters messageConverters;
+
+    public FirstController(HttpMessageConverters messageConverters) {
+        this.messageConverters = messageConverters;
+    }
 
     /*필기.
     *  컨트롤러의 핸들러 메소드의 반환 값을 void 형으로 설정하게 되면
