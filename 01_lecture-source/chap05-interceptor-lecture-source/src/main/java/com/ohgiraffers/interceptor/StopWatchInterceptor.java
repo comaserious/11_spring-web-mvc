@@ -31,7 +31,7 @@ public class StopWatchInterceptor implements HandlerInterceptor {
         request.setAttribute("startTime",startTime);
 
         /*true 이면 컨트롤러 이어서 호출하게 한다 , false 면 핸들러 메소드를 호출하지 않는다*/
-        return  false;
+        return  true;
     }
 
 
