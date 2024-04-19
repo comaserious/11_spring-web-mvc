@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.crud.menu.model.dao.MenuMapper">
+    <resultMap id="menuResultMap" type="com.ohgiraffers.crud.menu.model.dto.MenuDTO">
+        <id property="code" column="menu_code"/>
+        <result property="name" column="menu_name"/>
+        <result property="price" column="menu_price"/>
+        <result property="categoryCode" column="category_code"/>
+        <result property="orderableStatus" column="orderable_status"/>
+    </resultMap>
+    <select id="findAllMenu" resultMap="menuResultMap">
+        select
+            *
+        from
+            tbl_menu
+        where
+            orderable_status='Y'
+        order by menu_code;
+    </select>
+
+    <resultMap id="categoryMap" type="com.ohgiraffers.crud.menu.model.dto.CategoryDTO">
+        <id property="code" column="category_code"/>
+        <result property="name" column="category_name"/>
+        <result property="refCategoryCode" column="ref_category_code"/>
+    </resultMap>
+    <select id="findAllCategory" resultMap="categoryMap">
+        select
+            *
+        from
+            tbl_category
+
+    </select>
+    <insert id="registNewMenu" parameterType="com.ohgiraffers.crud.menu.model.dto.MenuDTO"
+    useGeneratedKeys="true" keyProperty="code">
+<!--useGenereatedKeys="true" => 를 하게 되면 autoincrement 임을 명시적으로 선언해주는 것이다
+ keyProperty => 는 어떠한 값이 key 값인지 파라미터 클래스의 필드 명을 적어 주어 선언해준다 -->
+        insert into tbl_menu(menu_name,menu_price,category_code,orderable_status)
+        values (#{name},#{price},#{categoryCode},#{orderableStatus})
+    </insert>
+</mapper>

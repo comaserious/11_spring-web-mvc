@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Map;
 
 @Controller
@@ -148,4 +150,30 @@ public class FirstController {
 
         return "first/loginResult";
     }
+
+    @GetMapping("/body")
+    public void body(){
+
+    }
+    /*@RequestBody
+    * http 본문 자체를 읽는 부분을 모델로 변환시켜주는 어노테이션
+    * 출력시 queryString 형태의 문자열이 전송된다
+    * JSON 으로 전달하는 경우 Jackson 의 컨버터로 자동 파싱하여 사용할수있다
+    *
+    * RestAPI 작성시 자주 사용되며, 일반적인 form 전송을 할때는 거의 사용하지 않는다
+    * @RequestHeader 어노테이션 헤더에 대한 정보 가져오기
+    * */
+    @PostMapping("/body")
+    public void body(@RequestBody String body,@RequestHeader("Content-Type") String requestHeader,Model model) throws UnsupportedEncodingException {
+
+
+        System.out.println("body = " + body);
+        System.out.println("requestHeader = " + requestHeader);
+
+        // body 의 인코딩 방식을 설정하여 한글이 깨지지 않게 하는 코드
+        System.out.println(URLDecoder.decode(body,"UTF-8"));
+
+        model.addAttribute("body",body);
+    }
+
 }
