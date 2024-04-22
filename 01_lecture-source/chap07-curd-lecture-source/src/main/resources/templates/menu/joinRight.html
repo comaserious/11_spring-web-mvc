@@ -5,43 +5,55 @@
     <title>Title</title>
 </head>
 <body>
+
+<!--    <table border="1">-->
+<!--        <tr>-->
+<!--            <th>카테고리 코드</th>-->
+<!--            <th>카테고리 이름</th>-->
+<!--            <th>상위 카테고리</th>-->
+<!--            <th>메뉴 코드</th>-->
+<!--            <th>메뉴 이름</th>-->
+<!--            <th>메뉴 가격</th>-->
+<!--            <th>판매가능 여부</th>-->
+<!--        </tr>-->
+<!--        <th:block th:each="category:${categoryAndMenu}">-->
+<!--            <tr>-->
+<!--                <td th:text="${category.code}"></td>-->
+<!--                <td th:text="${category.name}"></td>-->
+<!--                <td th:text="${category.refCategoryCode}"></td>-->
+<!--                <td th:text="${category.menuList[0].code}"></td>-->
+<!--                <td th:text="${category.menuList[0].name}"></td>-->
+<!--                <td th:text="${category.menuList[0].price}"></td>-->
+<!--                <td th:text="${category.menuList[0].orderableStatus}"></td>-->
+<!--            </tr>-->
+<!--            <th:block th:if="${category.menuList.size()}>1">-->
+<!--                <th:block th:each="p, index:${category.menuList}">-->
+<!--                    <th:block th:if="${index ne 0}">-->
+<!--                        <tr></tr>-->
+<!--                        <tr></tr>-->
+<!--                        <tr></tr>-->
+<!--                        <tr th:text="${category.menuList[${p}].code}"></tr>-->
+<!--                        <tr th:text="${category.menuList[${p}].name}"></tr>-->
+<!--                        <tr th:text="${category.menuList[${p}].price}"></tr>-->
+<!--                        <tr th:text="${category.menuList[${p}].orderableStatus}"></tr>-->
+<!--                    </th:block>-->
+
+
+
+<!--                </th:block>-->
+<!--            </th:block>-->
+<!--        </th:block>-->
+<!--    </table>-->
+
     <table border="1">
         <tr>
             <th>카테고리 코드</th>
             <th>카테고리 이름</th>
-            <th>상위 카테고리</th>
+            <th>상위 카테고리 코드</th>
             <th>메뉴 코드</th>
             <th>메뉴 이름</th>
             <th>메뉴 가격</th>
-            <th>판매가능 여부</th>
-        </tr>
-        <tr th:each="category: ${categoryAndMenu}">
-            <td th:text="${category.code}"></td>
-            <td th:text="${category.name}"></td>
-            <td th:text="${category.refCategoryCode}"></td>
-            <th:block th:each="lists:${category.menuList}">
-
-
-                    <td th:text="${lists.code}"></td>
-                    <td th:text="${lists.name}"></td>
-                    <td th:text="${lists.price}"></td>
-                    <td th:text="${lists.orderableStatus}"></td>
-
-
-            </th:block>
-
-        </tr>
-
-    </table>
-
-        <tr>
-            <th>카테고리 코드</th>
-            <th>카테고리 이름</th>
-            <th>상위 카테고리</th>
-            <th>메뉴 코드</th>
-            <th>메뉴 이름</th>
-            <th>메뉴 가격</th>
-            <th>판매가능 여부</th>
+            <th>판매가능여부</th>
         </tr>
         <th:block th:each="category:${categoryAndMenu}">
             <th:block th:each="lists:${category.menuList}">
@@ -54,10 +66,11 @@
                     <td th:text="${lists.price}"></td>
                     <td th:text="${lists.orderableStatus}"></td>
                 </tr>
-
-
-
             </th:block>
         </th:block>
+    </table>
+
+
+
 </body>
 </html>

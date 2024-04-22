@@ -87,4 +87,19 @@ public class MenuController {
         return "menu/joinRight";
     }
 
+    @GetMapping("/delete")
+    public void deleteMenu(){
+
+    }
+
+    @PostMapping("/delete")
+    public String deleteMenuByCode(@RequestParam int code,RedirectAttributes redirectAttributes, Locale locale){
+
+        menuService.deleteMenuByCode(code);
+        redirectAttributes.addFlashAttribute("successMessage",messageSource.getMessage("deleteMenu",null,locale));
+
+        return "redirect:/menu/list";
+    }
+
+
 }

@@ -52,4 +52,10 @@ public class MenuService {
 
         return menuMapper.findAllCategoryAndMenu();
     }
+
+    @Transactional
+    public void deleteMenuByCode(int code) {
+
+        menuMapper.deleteMenuByCode(code);
+    }
 }

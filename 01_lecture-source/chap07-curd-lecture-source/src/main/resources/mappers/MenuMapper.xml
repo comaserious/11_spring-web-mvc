@@ -94,5 +94,13 @@
         on a.category_code = b.category_code
         where
         orderable_status='Y'
+        order by
+        category_code
     </select>
+
+    <delete id="deleteMenuByCode" parameterType="_int">
+        delete from tbl_menu
+        where
+        menu_code = #{code}
+    </delete>
 </mapper>

@@ -19,4 +19,6 @@ public interface MenuMapper {
     List<MenuAndCategoryDTO> findAllMenuAndCategory();
 
     List<CategoryAndMenuDTO> findAllCategoryAndMenu();
+
+    void deleteMenuByCode(int code);
 }
