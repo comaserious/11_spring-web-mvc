@@ -1,7 +1,9 @@
 package com.ohgiraffers.crud.menu.model.service;
 
 import com.ohgiraffers.crud.menu.model.dao.MenuMapper;
+import com.ohgiraffers.crud.menu.model.dto.CategoryAndMenuDTO;
 import com.ohgiraffers.crud.menu.model.dto.CategoryDTO;
+import com.ohgiraffers.crud.menu.model.dto.MenuAndCategoryDTO;
 import com.ohgiraffers.crud.menu.model.dto.MenuDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +41,15 @@ public class MenuService {
     @Transactional
     public void registNewMenu(MenuDTO menuDTO) {
         menuMapper.registNewMenu(menuDTO);
+    }
+
+    public List<MenuAndCategoryDTO> findAllMenuAndCategory() {
+
+        return menuMapper.findAllMenuAndCategory();
+    }
+
+    public List<CategoryAndMenuDTO> findAllCategoryAndMenu() {
+
+        return menuMapper.findAllCategoryAndMenu();
     }
 }

@@ -39,4 +39,60 @@
         insert into tbl_menu(menu_name,menu_price,category_code,orderable_status)
         values (#{name},#{price},#{categoryCode},#{orderableStatus})
     </insert>
+
+    <resultMap id="menuAndCategory" type="com.ohgiraffers.crud.menu.model.dto.MenuAndCategoryDTO">
+        <id property="code" column="menu_code"/>
+        <result property="name" column="menu_name"/>
+        <result property="price" column="menu_price"/>
+        <result property="categoryCode" column="category_code"/>
+        <result property="orderableStatus" column="orderable_status"/>
+        <association property="categoryDTO" javaType="com.ohgiraffers.crud.menu.model.dto.CategoryDTO">
+            <id property="code" column="category_code"/>
+            <result property="name" column="category_name"/>
+            <result property="refCategoryCode" column="ref_category_code"/>
+        </association>
+    </resultMap>
+
+
+    <select id="findAllMenuAndCategory" resultMap="menuAndCategory">
+        select
+            a.menu_code,
+            a.menu_name,
+            a.menu_price,
+            a.category_code,
+            a.orderable_status,
+            b.category_name,
+            b.ref_category_code
+        from
+            tbl_menu as a
+        join tbl_category as b
+        on a.category_code = b.category_code
+        where
+            orderable_status='Y'
+    </select>
+
+    <resultMap id="categoryAndMenu" type="com.ohgiraffers.crud.menu.model.dto.CategoryAndMenuDTO">
+        <id property="code" column="category_code"/>
+        <result property="name" column="category_name"/>
+        <result property="refCategoryCode" column="ref_category_code"/>
+        <collection property="menuList" resultMap="menuResultMap"/>
+    </resultMap>
+
+    <select id="findAllCategoryAndMenu" resultMap="categoryAndMenu">
+        select
+            a.category_code,
+            a.category_name,
+            a.ref_category_code,
+            b.menu_code,
+            b.menu_name,
+            b.menu_price,
+            b.orderable_status
+        from
+            tbl_category as a
+        join
+            tbl_menu as b
+        on a.category_code = b.category_code
+        where
+        orderable_status='Y'
+    </select>
 </mapper>

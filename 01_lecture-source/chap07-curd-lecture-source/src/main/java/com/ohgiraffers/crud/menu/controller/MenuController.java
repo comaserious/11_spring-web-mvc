@@ -1,6 +1,8 @@
 package com.ohgiraffers.crud.menu.controller;
 
+import com.ohgiraffers.crud.menu.model.dto.CategoryAndMenuDTO;
 import com.ohgiraffers.crud.menu.model.dto.CategoryDTO;
+import com.ohgiraffers.crud.menu.model.dto.MenuAndCategoryDTO;
 import com.ohgiraffers.crud.menu.model.dto.MenuDTO;
 import com.ohgiraffers.crud.menu.model.service.MenuService;
 import lombok.extern.flogger.Flogger;
@@ -63,6 +65,26 @@ public class MenuController {
 
 
         return "redirect:/menu/list";
+    }
+
+    @GetMapping("/joinCategory/list")
+    public String menuAndCategoryList(Model model){
+
+        List<MenuAndCategoryDTO> menuAndCategoryDTOList = menuService.findAllMenuAndCategory();
+
+        model.addAttribute("menuAndCategory",menuAndCategoryDTOList);
+
+        return "menu/joinMenu";
+    }
+
+    @GetMapping("/joinCategory/rightList")
+    public String categoryAndMenu(Model model){
+        List<CategoryAndMenuDTO> categoryAndMenuDTOS = menuService.findAllCategoryAndMenu();
+
+        model.addAttribute("categoryAndMenu",categoryAndMenuDTOS);
+
+
+        return "menu/joinRight";
     }
 
 }
