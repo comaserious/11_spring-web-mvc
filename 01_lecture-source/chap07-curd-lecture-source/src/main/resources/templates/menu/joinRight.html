@@ -58,9 +58,16 @@
         <th:block th:each="category:${categoryAndMenu}">
             <th:block th:each="lists:${category.menuList}">
                 <tr>
-                    <td th:text="${category.code}"></td>
-                    <td th:text="${category.name}"></td>
-                    <td th:text="${category.refCategoryCode}"></td>
+                    <th:block th:if="${listsStat.index==0}">
+                        <td th:text="${category.code}"></td>
+                        <td th:text="${category.name}"></td>
+                        <td th:text="${category.refCategoryCode}"></td>
+                    </th:block>
+                    <th:block th:if="${listsStat.index!=0}">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </th:block>
                     <td th:text="${lists.code}"></td>
                     <td th:text="${lists.name}"></td>
                     <td th:text="${lists.price}"></td>

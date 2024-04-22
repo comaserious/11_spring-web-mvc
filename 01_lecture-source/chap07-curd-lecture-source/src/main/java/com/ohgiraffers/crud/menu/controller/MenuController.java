@@ -16,8 +16,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/menu")
@@ -93,13 +95,35 @@ public class MenuController {
     }
 
     @PostMapping("/delete")
-    public String deleteMenuByCode(@RequestParam int code,RedirectAttributes redirectAttributes, Locale locale){
+    public String deleteMenuByCode(@RequestParam int menuName,RedirectAttributes redirectAttributes, Locale locale){
 
-        menuService.deleteMenuByCode(code);
+        menuService.deleteMenuByCode(menuName);
         redirectAttributes.addFlashAttribute("successMessage",messageSource.getMessage("deleteMenu",null,locale));
 
         return "redirect:/menu/list";
     }
 
+    @GetMapping("/dynamic/price")
+    public void price(){}
 
+    @ResponseBody
+    @GetMapping(value = "/lists", produces = "application/json; charset='UTF-8'")
+    public List<MenuDTO> listAll(){
+
+        return menuService.findAllMenus();
+    }
+    @PostMapping("/price")
+    public String menuByPrice(@RequestParam int prices, Model model){
+        Map<String,Integer> price = new HashMap<>();
+        price.put("price",prices);
+
+
+
+        List<MenuDTO> menuList = menuService.menuByPrice(price);
+
+
+        model.addAttribute("menuList",menuList);
+
+        return "/menu/list";
+    }
 }

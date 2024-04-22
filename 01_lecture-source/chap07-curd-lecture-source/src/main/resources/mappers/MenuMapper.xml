@@ -103,4 +103,28 @@
         where
         menu_code = #{code}
     </delete>
+
+    <select id="menuByPrice" parameterType="hashmap" resultMap="menuResultMap">
+        select
+            *
+        from
+            tbl_menu
+        where
+        orderable_status = 'Y'
+        <if test="price lt 10000">
+            and
+            <![CDATA[
+                menu_price < #{price}
+            ]]>
+        </if>
+        <if test="price lt 20000 and price gte 10000">
+            and
+            menu_price between 10000 and #{price}
+        </if>
+        <if test="price lt 30000 and price gte 20000">
+            and
+            menu_price between 20000 and #{price}
+        </if>
+
+    </select>
 </mapper>

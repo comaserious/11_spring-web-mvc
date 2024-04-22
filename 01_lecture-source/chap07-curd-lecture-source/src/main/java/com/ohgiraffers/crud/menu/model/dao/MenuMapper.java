@@ -7,6 +7,7 @@ import com.ohgiraffers.crud.menu.model.dto.MenuDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface MenuMapper {
@@ -21,4 +22,6 @@ public interface MenuMapper {
     List<CategoryAndMenuDTO> findAllCategoryAndMenu();
 
     void deleteMenuByCode(int code);
+
+    List<MenuDTO> menuByPrice(Map<String, Integer> price);
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MenuService {
@@ -57,5 +58,10 @@ public class MenuService {
     public void deleteMenuByCode(int code) {
 
         menuMapper.deleteMenuByCode(code);
+    }
+
+    public List<MenuDTO> menuByPrice(Map<String, Integer> price) {
+
+        return menuMapper.menuByPrice(price);
     }
 }
